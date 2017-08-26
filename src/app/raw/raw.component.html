@@ -1,0 +1,47 @@
+<ac-map>
+  <ac-layer acFor="let track of tracks$" [context]="this" [store]="true">
+    <!-- <ac-billboard-desc props="{
+                  image: plane.image,
+                  scale: 1.1,
+                  position: plane.position
+                }">
+        </ac-billboard-desc> -->
+    <!-- <ac-label-desc props="{
+            position: plane.position,
+            text: plane.id,
+            font: '40px sans-serif',
+            scale: 0.5,
+            fillColor: getTextColor(plane)
+        }">
+    </ac-label-desc>
+
+    <ac-label-desc props="{
+        position: plane.position,
+        pixelOffset : [-15,35] | pixelOffset,
+        text: plane.alt.toString(),
+        font: '30px sans-serif',
+        scale: 0.5,
+        fillColor: getTextColor(plane)
+    }">
+    </ac-label-desc>
+-->
+
+    <!-- <ac-polyline-desc props="{
+        positions: [track.position, track.futurePosition],
+        width: 1,
+        material: getTextColor(plane)
+    }">
+    </ac-polyline-desc>  -->
+
+    <ac-model-desc props="{
+        position: track.position,
+        minimumPixelSize: 100,
+        maximumScale : 20000,
+        uri: '/assets/CesiumAir/Cesium_Air.gltf',
+        orientation: track.orientation
+        }">
+</ac-model-desc>
+
+
+  </ac-layer>
+</ac-map>
