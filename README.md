@@ -1,6 +1,10 @@
 # Track
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
+This project is the UI client of the trackrepository project based on Angular and Cesium.
+
+This application is using Stomp WebSocket to receive tracks.
+
+Please refer to this project [https://github.com/nouhouari/trackrepository](https://github.com/nouhouari/trackrepository)
 
 ## Development server
 

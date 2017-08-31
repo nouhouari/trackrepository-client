@@ -14,12 +14,6 @@ export class ConnectionComponent implements OnInit {
   private stompSubscription: Observable<Message>;
   private currentSubscription;
 
-  private wsConf = {
-    host: 'http://localhost:4200/api/ws',
-    debug: true,
-    queue: { 'init': false }
-  };
-
   constructor(
     private _stompService: StompService
   ) {

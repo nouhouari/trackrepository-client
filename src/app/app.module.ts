@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {StompConfig, StompService} from '@stomp/ng2-stompjs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StompConfig, StompService } from '@stomp/ng2-stompjs';
 
 import { AppComponent } from './app.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { RawComponent } from './raw/raw.component';
 import { AngularCesiumModule } from 'angular-cesium';
-import { TrackService } from './track.service';
 
+import { AlertModule, ModalModule } from 'ngx-bootstrap';
 
 const stompConfig: StompConfig = {
   // Which server?
@@ -42,12 +42,16 @@ const stompConfig: StompConfig = {
     RawComponent
   ],
   imports: [
+    AlertModule.forRoot(),
+    ModalModule.forRoot(),
     NgbModule.forRoot(),
     BrowserModule,
     AngularCesiumModule
   ],
   providers: [
-    TrackService,
+
+    // CesiumService.ViewersManagerService,
+
     StompService,
     {
       provide: StompConfig,

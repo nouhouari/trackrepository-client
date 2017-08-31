@@ -1,5 +1,22 @@
-<ac-map>
-  <ac-layer acFor="let track of tracks$" [context]="this" [store]="true">
+<ac-map id="cesiumContainer" #cesiumContainer [enableTilt]="false">
+
+  <!-- <ac-map-layer-provider [provider]="MapLayerProviderOptions.OpenStreetMap" 
+  [options]="{
+                    url : 'https://a.tile.openstreetmap.org/'
+             }">
+  </ac-map-layer-provider> -->
+
+  <ac-map-layer-provider [provider]="MapLayerProviderOptions.BingMaps"
+                       [options]="{
+                                    url : 'https://dev.virtualearth.net',
+                                    key : Cesium.BingMapsApi.defaultKey,
+                                    mapStyle : Cesium.BingMapsStyle.AERIAL
+                                }">
+</ac-map-layer-provider>
+
+  <ac-layer #toto acFor="let track of tracks$" [context]="this" [store]="true">
+
+
     <!-- <ac-billboard-desc props="{
                   image: plane.image,
                   scale: 1.1,
@@ -35,12 +52,12 @@
 
     <ac-model-desc props="{
         position: track.position,
-        minimumPixelSize: 100,
-        maximumScale : 20000,
+        minimumPixelSize: 50,
+        maximumScale : 2000,
         uri: '/assets/CesiumAir/Cesium_Air.gltf',
         orientation: track.orientation
         }">
-</ac-model-desc>
+    </ac-model-desc>
 
 
   </ac-layer>

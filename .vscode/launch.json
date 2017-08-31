@@ -1,0 +1,30 @@
+{
+    
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Launch localhost with sourcemaps",
+                "type": "chrome",
+                "request": "launch",
+                "url": "http://localhost:4200/", //your application running with ng serve
+                "sourceMaps": true,
+                "diagnosticLogging": true,
+                "runtimeArgs": [
+                    "--new-window", //Open in new window
+                    "--user-data-dir=remote-profile",
+                    "--remote-debugging-port=9222" //Open in port 9222 (standard chrome debug port)
+                ],
+                "webRoot": "${workspaceRoot}/src/"
+            },
+            {
+                "name": "Attach with sourcemaps",
+                "type": "chrome",
+                "request": "attach",
+                "port": 9222,
+                "sourceMaps": true,
+                "diagnosticLogging": true,
+                "webRoot": "${workspaceRoot}/src/"
+            }
+        ]
+    }
+    
