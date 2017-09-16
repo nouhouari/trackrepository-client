@@ -8,7 +8,11 @@ import { ConnectionComponent } from './connection/connection.component';
 import { RawComponent } from './raw/raw.component';
 import { AngularCesiumModule } from 'angular-cesium';
 
-import { AlertModule, ModalModule } from 'ngx-bootstrap';
+import { TrackInfoComponent } from './track-info/track-info.component';
+import { TrackInfoListComponent } from './track-info-list/track-info-list.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+
 
 const stompConfig: StompConfig = {
   // Which server?
@@ -39,14 +43,16 @@ const stompConfig: StompConfig = {
   declarations: [
     AppComponent,
     ConnectionComponent,
-    RawComponent
+    RawComponent,
+    TrackInfoComponent,
+    TrackInfoListComponent
   ],
   imports: [
-    AlertModule.forRoot(),
-    ModalModule.forRoot(),
     NgbModule.forRoot(),
     BrowserModule,
-    AngularCesiumModule
+    AngularCesiumModule,
+    AngularFontAwesomeModule,
+    AccordionModule.forRoot()
   ],
   providers: [
 

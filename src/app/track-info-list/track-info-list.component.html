@@ -1,0 +1,5 @@
+<accordion>
+  <accordion-group *ngFor="let track of selectedTracks" heading="#{{track.id}}" [panelClass]="customClass">
+      <app-track-info [track]=track></app-track-info>
+  </accordion-group>
+</accordion>

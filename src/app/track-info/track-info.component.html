@@ -1,0 +1,12 @@
+<div class="track container">
+  <div>
+    <fa class="col-md-1 icon" name="location-arrow"></fa>
+    <fa class="col-md-1 icon" name="remove" (click)="unselect()"></fa>
+  </div>
+  <p><label>Update time </label> {{track.ut | date:'HH:mm:ss Z' }} </p>
+  <p><label>Name </label> {{track.name}}</p>
+  <p><label>Call sign </label> {{track.callsign}}</p>
+  <p><label>Latitude </label> {{track.lat | number:'2.2-6'}} deg</p>
+  <p><label>Longitude </label> {{track.lon | number:'3.2-6'}} deg</p>
+  <p><label>Speed </label> {{track.sp | number:'1.2-2'}} m/s</p>
+</div>

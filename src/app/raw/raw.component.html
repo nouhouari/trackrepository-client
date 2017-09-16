@@ -1,18 +1,16 @@
 <ac-map id="cesiumContainer" #cesiumContainer [enableTilt]="false">
 
-  <!-- <ac-map-layer-provider [provider]="MapLayerProviderOptions.OpenStreetMap" 
-  [options]="{
-                    url : 'https://a.tile.openstreetmap.org/'
-             }">
-  </ac-map-layer-provider> -->
+ <div class="leftpanel">
+     <label>Track information</label>
+     <app-track-info-list></app-track-info-list>
+ </div>    
 
-  <ac-map-layer-provider [provider]="MapLayerProviderOptions.BingMaps"
-                       [options]="{
+  <ac-map-layer-provider [provider]="MapLayerProviderOptions.BingMaps" [options]="{
                                     url : 'https://dev.virtualearth.net',
                                     key : Cesium.BingMapsApi.defaultKey,
                                     mapStyle : Cesium.BingMapsStyle.AERIAL
                                 }">
-</ac-map-layer-provider>
+  </ac-map-layer-provider>
 
   <ac-layer #toto acFor="let track of tracks$" [context]="this" [store]="true">
 

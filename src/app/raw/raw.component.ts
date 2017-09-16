@@ -1,4 +1,4 @@
-import { Input, ViewChild } from '@angular/core';
+import { Input, ViewChild, TemplateRef } from '@angular/core';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { StompService, StompState } from '@stomp/ng2-stompjs';
@@ -12,6 +12,8 @@ import { AcMapComponent } from 'angular-cesium';
 import { AcLayerComponent } from 'angular-cesium';
 import { ViewerConfiguration } from 'angular-cesium';
 
+import { TrackInfoComponent } from '../track-info/track-info.component';
+
 @Component({
   selector: 'app-raw',
   templateUrl: './raw.component.html',
@@ -19,6 +21,9 @@ import { ViewerConfiguration } from 'angular-cesium';
   providers: [
     TrackService,
     ViewerConfiguration
+  ],
+  entryComponents: [
+    TrackInfoComponent
   ]
 })
 export class RawComponent implements OnInit, AfterViewInit {
@@ -38,7 +43,7 @@ export class RawComponent implements OnInit, AfterViewInit {
 
   constructor(public trackService: TrackService, public viewerConf: ViewerConfiguration) {
     viewerConf.viewerOptions = {
-      sceneMode: Cesium.SceneMode.COLUMBUS_VIEW,
+      sceneMode: Cesium.SceneMode.SCENE3D,
       selectionIndicator: false,
       timeline: false,
       infoBox: false,
@@ -50,14 +55,14 @@ export class RawComponent implements OnInit, AfterViewInit {
       navigationHelpButton: false,
       navigationInstructionsInitiallyVisible: false,
       terrainProvider: new Cesium.CesiumTerrainProvider({
-        url : '//assets.agi.com/stk-terrain/world'
-    }),
+        url: '//assets.agi.com/stk-terrain/world'
+      }),
     };
     this.tracks$ = trackService.getNotificationStream();
   }
 
   ngAfterViewInit() {
-  const mouseOverObservable = this.map.getMapEventManager().register({
+    const mouseOverObservable = this.map.getMapEventManager().register({
       event: CesiumEvent.LEFT_CLICK,
       pick: PickOptions.PICK_FIRST,
       priority: 1,
@@ -68,19 +73,18 @@ export class RawComponent implements OnInit, AfterViewInit {
       if (this.lastPickTrack && (!track || track.id !== this.lastPickTrack.id)) {
         this.lastPickTrack.picked = false;
         console.log(' Track unselected ');
-        // this.layer.update(this.lastPickTrack, this.lastPickTrack.id);
       }
       if (track && (!this.lastPickTrack || track.id !== this.lastPickTrack.id)) {
         track.picked = true;
-        console.log(' Track selected ');
-        // this.layer.update(track, track.id);
+        const t = track;
+        t.selected = true;
+        this.trackService.getNotificationSubject().next(track);
       }
       this.lastPickTrack = track;
-      // console.log(' picked ' + track);
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getTrackColor(track): any {
     return Cesium.Color.WHITE;
