@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nouhouari/trackrepository-client/tree/master.svg?style=svg&circle-token=7e680eee5f3ab3558d08dcd6a6dfe59d892aa086)](https://circleci.com/gh/nouhouari/trackrepository-client/tree/master)
+
 # Track
 
 This project is the UI client of the trackrepository project based on Angular and Cesium.
