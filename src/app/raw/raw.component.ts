@@ -58,7 +58,7 @@ export class RawComponent implements OnInit, AfterViewInit {
         url: '//assets.agi.com/stk-terrain/world'
       }),
     };
-    this.tracks$ = trackService.getNotificationStream();
+    this.tracks$ = trackService.subscribe();
   }
 
   ngAfterViewInit() {
@@ -78,7 +78,7 @@ export class RawComponent implements OnInit, AfterViewInit {
         track.picked = true;
         const t = track;
         t.selected = true;
-        this.trackService.getNotificationSubject().next(track);
+        this.trackService.getNotificationStream().next(track);
       }
       this.lastPickTrack = track;
     });

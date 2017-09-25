@@ -52,7 +52,7 @@ export class TrackInfoComponent implements OnInit, AfterViewInit {
     console.log('unselect track');
     this.track.selected = false;
     this.subscription.unsubscribe();
-    this.trackService.getNotificationSubject().next(this.track);
+    this.trackService.getNotificationStream().next(this.track);
   }
 
 }

@@ -1,12 +1,14 @@
 <div class="track container">
-  <div>
-    <fa class="col-md-1 icon" name="location-arrow"></fa>
-    <fa class="col-md-1 icon" name="remove" (click)="unselect()"></fa>
+  <div class="btn-group" role="group" style="width: 100%">
+    <button type="button" class="btn btn-secondary"><fa class="col-md-1 icon" tooltip="Center" name="location-arrow"></fa></button>
+    <button type="button" class="btn btn-secondary" disabled></button>
+    <button type="button" class="btn btn-secondary"><fa class="col-md-1 icon" tooltip="Close" name="remove" (click)="unselect()"></fa></button>
   </div>
-  <p><label>Update time </label> {{track.ut | date:'HH:mm:ss Z' }} </p>
-  <p><label>Name </label> {{track.name}}</p>
-  <p><label>Call sign </label> {{track.callsign}}</p>
-  <p><label>Latitude </label> {{track.lat | number:'2.2-6'}} deg</p>
-  <p><label>Longitude </label> {{track.lon | number:'3.2-6'}} deg</p>
-  <p><label>Speed </label> {{track.sp | number:'1.2-2'}} m/s</p>
+  <p><label>Update time </label> <span>{{track.ut | date:'HH:mm:ss Z' }} </span></p>
+  <p><label>Name </label> <span>{{track.name}}</span></p>
+  <p><label>Call sign </label> <span>{{track.callsign}}</span></p>
+  <p><label>Latitude </label> <span>{{track.lat | number:'2.2-6'}} deg</span></p>
+  <p><label>Longitude </label> <span>{{track.lon | number:'3.2-6'}} deg</span></p>
+  <p><label>Speed </label> <span>{{track.sp | number:'1.2-2'}} m/s</span></p>
+  <p><label>Heading </label> <span>{{track.heading | number:'1.2-2'}} deg</span></p>
 </div>

@@ -10,7 +10,7 @@ import { Message } from '@stomp/stompjs';
 @Injectable()
 export class TrackService implements TrackProvider {
 
-  public stream: Observable<AcNotification>;
+  // I public stream: Observable<AcNotification>;
   public subject: Subject<AcNotification>;
   public trackStream: Observable<Track>;
 
@@ -22,6 +22,7 @@ export class TrackService implements TrackProvider {
 
     this.subject = new Subject<AcNotification>();
 
+    /*
     let heading = Cesium.Math.toRadians(0 - 90);
     let pitch = Cesium.Math.toRadians(0.0);
     let roll = Cesium.Math.toRadians(0.0);
@@ -89,20 +90,20 @@ export class TrackService implements TrackProvider {
         };
         obs.next(track1);
       }, 5000);
-    });
+     }); */
   }
 
   /**
    * Return notification observable.
-   */
   public getNotificationStream(): Observable<AcNotification> {
     return this.stream;
   }
+  */
 
   /**
    * Return notification subject.
    */
-  public getNotificationSubject(): Subject<AcNotification> {
+  public getNotificationStream(): Subject<AcNotification> {
     return this.subject;
   }
 
@@ -115,17 +116,6 @@ export class TrackService implements TrackProvider {
       .map((message: Message) => {
         return JSON.parse(message.body);
       });
-
-    // Create a track stream
-    this.trackStream = stompStream.map(m => {
-      const track: Track = new Track();
-      track.ei = m.ei;
-      track.latitude = m.geo[0];
-      track.longitude = m.geo[1];
-      track.heading = m.he;
-      track.speed = m.sp;
-      return track;
-    });
 
     // Notification stream
     const obs: Observable<AcNotification> = stompStream
@@ -152,13 +142,36 @@ export class TrackService implements TrackProvider {
             'position': position,
             'futurePosition': groundPosition,
             'orientation': orientation,
+            'lat': j.geo[0],
+            'lon': j.geo[1],
+            'sp': j.sp,
+            'ut' : new Date(),
             'selected' : false
+
+            /**
+             *  'id': 0,
+            'name': 'Hello Track',
+            'isTarget': true,
+            'scale': 0.03,
+            'callsign': 'track0',
+            'image': '/assets/fighter-jet.png',
+            'heading': heading,
+            'position': position,
+            'futurePosition': groundPosition,
+            'orientation': orientation,
+            'lat': lat,
+            'lon': lon,
+            'sp': 45.0 + Math.random(),
+            'ut' : new Date(),
+            'selected' : false
+             */
           })
         };
+        console.info(acNotification);
         return acNotification;
       });
     this.subject.merge(obs);
-    this.currentSubscription = obs.subscribe();
+    this.currentSubscription = this.subject.subscribe();
     return obs;
   }
 

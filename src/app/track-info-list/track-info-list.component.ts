@@ -12,7 +12,7 @@ export class TrackInfoListComponent implements OnInit {
   public selectedTracks: Array<any> = new Array();
 
   constructor(public trackService: TrackService) {
-    this.trackService.getNotificationSubject().subscribe(
+    this.trackService.getNotificationStream().subscribe(
       n => {
         const e: any = n;
         if (e.selected === true) {

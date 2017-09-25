@@ -12,6 +12,9 @@ import { TrackInfoComponent } from './track-info/track-info.component';
 import { TrackInfoListComponent } from './track-info-list/track-info-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { PopoverModule } from 'ngx-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap';
+import { ButtonsModule } from 'ngx-bootstrap';
 
 
 const stompConfig: StompConfig = {
@@ -36,7 +39,7 @@ const stompConfig: StompConfig = {
   reconnect_delay: 5000,
 
   // Will log diagnostics on console
-  debug: false
+  debug: true
 };
 
 @NgModule({
@@ -52,7 +55,10 @@ const stompConfig: StompConfig = {
     BrowserModule,
     AngularCesiumModule,
     AngularFontAwesomeModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    PopoverModule.forRoot(),
+    TooltipModule.forRoot(),
+    ButtonsModule.forRoot(),
   ],
   providers: [
 
